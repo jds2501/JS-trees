@@ -78,7 +78,7 @@ describe("maxSum", function () {
   });
 });
 
-fdescribe("nextLarger", function () {
+describe("nextLarger", function () {
   it("handles simple trees", function () {
     expect(smallTree.nextLarger(4)).toBe(5);
     expect(smallTree.nextLarger(5)).toBe(6);
