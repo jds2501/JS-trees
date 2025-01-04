@@ -113,7 +113,34 @@ class BinaryTree {
    * (i.e. are at the same level but have different parents. ) */
 
   areCousins(node1, node2) {
+    function findParentAndLevel(child, root) {
+      if (child) {
+        const bfs = [{ level: 1, searchNode: root }];
 
+        while (bfs.length > 0) {
+          const current = bfs.shift();
+
+          if (current.searchNode.left === child || current.searchNode.right === child) {
+            return current;
+          }
+
+          if (current.searchNode.left) {
+            bfs.push({ level: current.level + 1, searchNode: current.searchNode.left });
+          }
+
+          if (current.searchNode.right) {
+            bfs.push({ level: current.level + 1, searchNode: current.searchNode.right });
+          }
+        }
+      }
+    }
+
+    const firstParentAndLevel = findParentAndLevel(node1, this.root);
+    const secondParentAndLevel = findParentAndLevel(node2, this.root);
+
+    return (firstParentAndLevel !== undefined && secondParentAndLevel !== undefined) &&
+      (firstParentAndLevel.level === secondParentAndLevel.level) &&
+      (firstParentAndLevel.searchNode !== secondParentAndLevel.searchNode);
   }
 
   /** Further study!
