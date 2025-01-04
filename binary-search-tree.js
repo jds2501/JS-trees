@@ -115,21 +115,66 @@ class BinarySearchTree {
    * Return an array of visited nodes. */
 
   dfsPreOrder() {
+    let visited = [];
 
+    if (this.root) {
+      visited.push(this.root.val);
+
+      if (this.root.left) {
+        visited = visited.concat((new BinarySearchTree(this.root.left).dfsPreOrder()));
+      }
+
+
+      if (this.root.right) {
+        visited = visited.concat((new BinarySearchTree(this.root.right).dfsPreOrder()));
+      }
+
+    }
+
+    return visited;
   }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
   dfsInOrder() {
+    let visited = [];
 
+    if (this.root) {
+      if (this.root.left) {
+        visited = visited.concat((new BinarySearchTree(this.root.left).dfsInOrder()));
+      }
+
+      visited.push(this.root.val);
+
+      if (this.root.right) {
+        visited = visited.concat((new BinarySearchTree(this.root.right).dfsInOrder()));
+      }
+
+    }
+
+    return visited;
   }
 
   /** dfsPostOrder(): Traverse the array using post-order DFS.
    * Return an array of visited nodes. */
 
   dfsPostOrder() {
+    let visited = [];
 
+    if (this.root) {
+      if (this.root.left) {
+        visited = visited.concat((new BinarySearchTree(this.root.left).dfsPostOrder()));
+      }
+
+      if (this.root.right) {
+        visited = visited.concat((new BinarySearchTree(this.root.right).dfsPostOrder()));
+      }
+
+      visited.push(this.root.val);
+    }
+
+    return visited;
   }
 
   /** bfs(): Traverse the array using BFS.
